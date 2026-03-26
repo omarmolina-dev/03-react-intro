@@ -1,17 +1,23 @@
-import Card from "./Card";
-import "./App.css";
+import { useState } from "react";
 
 function App() {
-  const name = "Omar";
-  const age = 22;
-  const city = "Hermosillo";
-  return (
-    <div>
-      <Card name="Omar" age={22} city="Hermosillo" />
-      <Card name="Sofia" age={24} city="Hermosillo" />
-      <Card name="Luis" age={23} city="Hermosillo" />
-    </div>
-  );
+    const [count, setCount] = useState(0);
+    const [name, setName] = useState("Omar");
+
+    return (
+        <div>
+            <h1>{count}</h1>
+            <button onClick={() => setCount(count + 1)}>+1</button>
+            <button onClick={() => setCount(count - 1)}>-1</button>
+            <button onClick={() => setCount(0)}>Reset</button>
+            
+            <input 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <p>Hello, {name}!</p>
+        </div>
+    );
 }
 
 export default App;
