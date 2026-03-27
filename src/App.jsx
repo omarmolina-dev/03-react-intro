@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import UserCard from "./Card";
+import "./App.css";
 
 function App() {
     const [users, setUsers] = useState([]);
@@ -14,29 +16,26 @@ function App() {
             });
     }, []);
 
-    <input value={search} onChange={(e) => setSearch(e.target.value)} />
-
-    const filteredUsers = users.filter(user => 
+    const filteredUsers = users.filter(user =>
         user.name.toLowerCase().includes(search.toLowerCase()));
-   
+
     if (loading) return <p>Loading users...</p>;
 
     return (
-        <div>
+        <div className="app">
             <h1>Users</h1>
-            <input 
+            <input className = "search-input"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search user..." />
-            {filteredUsers.map(user => (
-                <div key={user.id}>
-                    <h3>{user.name}</h3>
-                    <p>{user.email}</p>
-                </div>
-            ))}
+                placeholder="Search users..."
+            />
+            <div className="users-grid">
+                {filteredUsers.map(user => (
+                    <UserCard key={user.id} name={user.name} email={user.email} />
+                ))}
+            </div>
         </div>
     );
-
 }
 
 export default App;

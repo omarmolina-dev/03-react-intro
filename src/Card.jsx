@@ -1,11 +1,11 @@
-function Card({ name, age, city}) {
+
+function UserCard({ name, email}){
     return (
-        <div className ="card">
-            <h2>{name}</h2>
-            <p>{age} years old</p>
-            <p>{city}</p>
+        <div class="user-card">
+            <h3>{name}</h3>
+            <p>{email}</p>
         </div>
     )
 }
 
-export default Card;
+export default UserCard;
