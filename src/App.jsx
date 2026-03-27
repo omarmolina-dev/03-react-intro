@@ -1,21 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-    const [count, setCount] = useState(0);
-    const [name, setName] = useState("Omar");
+    const [rate, setRate] = useState(null);
+
+    useEffect(() => {
+        fetch("https://api.frankfurter.app/latest?from=USD&to=MXN")
+            .then(res => res.json())
+            .then(data => setRate(data.rates.MXN));
+    }, []);
 
     return (
         <div>
-            <h1>{count}</h1>
-            <button onClick={() => setCount(count + 1)}>+1</button>
-            <button onClick={() => setCount(count - 1)}>-1</button>
-            <button onClick={() => setCount(0)}>Reset</button>
-            
-            <input 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <p>Hello, {name}!</p>
+            <h1>USD to MXN</h1>
+            {rate ? <p>1 USD = {rate} MXN</p> : <p>Loading...</p>}
         </div>
     );
 }
